@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Tutor Platform</title>
+    <meta name="viewport" content="width=1200">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">AI Tutor</div>
+        <div class="user-info">
+            <span>Hello, Student</span>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+    
+    <div id="global-message" style="display:none;"></div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 My Courses</h3>
+            <div class="understanding-score">
+                <div class="understanding-num" id="sidebar-understanding">--%</div>
+                <div>Overall Understanding</div>
+            </div>
+            <div class="stats">
+                <div class="stat"><div class="stat-num" id="lessons-num">0</div><div class="stat-label">Lessons</div></div>
+                <div class="stat"><div class="stat-num" id="quiz-num">0</div><div class="stat-label">Quizzes</div></div>
+                <div class="stat"><div class="stat-num" id="minutes-num">0</div><div class="stat-label">Minutes</div></div>
+            </div>
+
+            <section class="recommendations-section" id="recommendations-section" style="display:none;">
+                <h4>💡 Recommendations</h4>
+                <ul id="recommendations-list"></ul>
+            </section>
+        </aside>
+
+        <main class="main-content">
+            <h2>Upload a Lesson Video</h2>
+            <div class="features">
+                <span class="feature-tag">🎥 Real Video</span>
+                <span class="feature-tag">📝 Auto Transcript</span>
+                <span class="feature-tag">❓ Smart Quiz</span>
+                <span class="feature-tag">📋 AI Summary</span>
+            </div>
+
+            <div class="upload-area">
+                <input type="file" id="videoFile" accept="video/mp4,video/x-m4v,video/*">
+                <select id="videoLanguage">
+                    <option value="auto">Auto-detect Language</option>
+                    <option value="ar">Arabic</option>
+                    <option value="en">English</option>
+                    </select>
+                <button class="btn" onclick="uploadVideo()">Upload & Transcribe</button>
+            </div>
+            <div id="video-section" style="margin:1.2rem 0; display:none;">
+                <video id="video-player" controls style="width:100%; max-height:260px; background:#111; border-radius:10px;"></video>
+            </div>
+
+            <div class="processing" id="processing" style="display:none;">Processing...</div>
+
+            <section class="summary-section" id="summary-section" style="display:none;">
+                <div class="loading-overlay hidden" id="summary-loading">
+                    <span class="loader"></span><span>جاري توليد الملخص...</span>
+                </div>
+                <h4>📋 Lesson Summary (AI Generated)</h4>
+                <ul id="summary-list"></ul>
+                <button class="btn" onclick="generateSummary('detailed')">🔄 Generate Detailed Summary</button>
+            </section>
+
+            <section class="transcript-section" id="transcript-section" style="display:none;">
+                <div class="loading-overlay hidden" id="transcript-loading">
+                    <span class="loader"></span><span>جاري التفريغ...</span>
+                </div>
+                <h4>📝 Transcript</h4>
+                <div class="transcript-text" id="transcript-text"></div>
+                <input type="text" id="search-input" placeholder="🔍 Search in transcript..." oninput="searchTranscript(this.value)">
+            </section>
+
+            <section class="quiz-section" id="quiz-section" style="display:none;">
+                <div class="loading-overlay hidden" id="quiz-loading">
+                    <span class="loader"></span><span>جاري توليد الاختبار...</span>
+                </div>
+                <h4 class="quiz-question">❓ Quick Quiz (AI Generated)</h4>
+                <div id="quiz-block"></div>
+                <button class="btn" onclick="generateQuiz('multiple_choice')">🎯 Generate New Quiz</button>
+            </section>
+        </main>
+
+        <aside class="chat-panel">
+            <div class="loading-overlay hidden" id="chat-loading">
+                <span class="loader"></span><span>جاري الرد...</span>
+            </div>
+            <h3>🤖 Smart Assistant</h3>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai-message">مرحباً! أنا مساعدك الذكي. اسألني أي شيء عن الدرس.</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="اسأل أي شيء..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="send-btn" onclick="sendMessage()">إرسال</button>
+            </div>
+            <div class="assistant-help">
+                💡 يمكنني المساعدة في:<br>
+                • شرح المفاهيم<br>
+                • إنشاء أسئلة إضافية<br>
+                • تلخيص المحتوى<br>
+                • الترجمة
+            </div>
+        </aside>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

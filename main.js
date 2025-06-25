@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8030/v1/api"; // Updated BASE_URL with /v1/api prefix
+const BASE_URL = "https://d9a2-156-217-225-90.ngrok-free.app/v1/api"; // Updated BASE_URL with /v1/api prefix
 
 let fullTranscript = "";
 let currentQuizQuestion = null; // To store current quiz question for evaluation
